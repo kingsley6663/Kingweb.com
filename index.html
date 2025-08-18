@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Professional portfolio of Kingsley Obosu Kwaku - Digital Marketer, AI Developer, and Graphic Designer">
+    <title>Kingsley Obosu Kwaku | Digital Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #FFC107;
+            --primary-dark: #FFA000;
+            --light: #ffffff;
+            --dark: #212121;
+            --gray: #757575;
+            --section-padding: 5rem 2rem;
+            --card-bg: rgba(255, 255, 255, 0.9);
+            --section-bg: rgba(255, 255, 255, 0.85);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            overflow-x: hidden;
+            min-height: 100vh;
+            background-color: #f5f5f5;
+        }
+
+        /* Background images with fade transition */
+        .background-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+        }
+        
+        .background-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0;
+            transition: opacity 1.5s ease-in-out;
+            z-index: 1;
+        }
+        
+        .background-image.active {
+            opacity: 1;
+        }
+        
+        /* Header with name animation */
+        header {
+            padding: 6rem 2rem;
+            text-align: center;
+            position: relative;
+            background: linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.8));
+        }
+        
+        @keyframes nameAnimation {
+            0% { 
+                opacity: 0;
+                transform: translateY(-30px) scale(0.9);
+                text-shadow: 0 0 10px rgba(255, 193, 7, 0);
+            }
+            100% { 
+                opacity: 1;
+                transform: translateY(0) scale(1);
+                text-shadow: 0 0 10px rgba(255, 193, 7, 0.3);
+            }
+        }
+        
+        h1 {
+            font-size: clamp(2.5rem, 8vw, 4rem);
+            margin-bottom: 0.5rem;
+            color: var(--dark);
+            animation: nameAnimation 1.2s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+            opacity: 0;
+        }
+        
+        .tagline {
+            font-size: clamp(1.2rem, 4vw, 1.8rem);
+            max-width: 700px;
+            margin: 0 auto 1rem;
+            color: var(--primary-dark);
+            animation: fadeIn 1s ease-out 0.5s forwards;
+            opacity: 0;
+            font-weight: 600;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 2rem;
+            animation: fadeIn 1s ease-out 0.8s forwards;
+            opacity: 0;
+        }
+        
+        .social-links a {
+            color: var(--dark);
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            color: var(--primary-dark);
+            transform: translateY(-3px);
+        }
+        
+        /* Navigation */
+        nav {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 1rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            flex-wrap: wrap;
+        }
+        
+        nav a {
+            color: var(--dark);
+            text-decoration: none;
+            font-weight: 600;
+            padding: 0.5rem 1.2rem;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            font-size: clamp(0.9rem, 3vw, 1rem);
+            border: 1px solid transparent;
+        }
+        
+        nav a:hover, nav a:focus {
+            color: var(--primary-dark);
+            border-color: var(--primary);
+        }
+        
+        nav a.active {
+            color: var(--primary-dark);
+            background: rgba(255, 193, 7, 0.1);
+            border-color: var(--primary);
+        }
+        
+        /* Main content sections */
+        main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+        
+        section {
+            padding: var(--section-padding);
+            margin: 2rem 0;
+            background: var(--section-bg);
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+        
+        section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        section h2 {
+            font-size: clamp(1.8rem, 6vw, 2.5rem);
+            margin-bottom: 2rem;
+            color: var(--primary-dark);
+            position: relative;
+            display: inline-block;
+        }
+        
+        section h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 50%;
+            height: 4px;
+            background: var(--primary);
+            border-radius: 2px;
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.5s ease;
+        }
+        
+        section.visible h2::after {
+            transform: scaleX(1);
+        }
+        
+        /* Cards grid */
+        .skills-grid, .projects-grid, .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .card {
+            background: var(--card-bg);
+            padding: 1.5rem;
+            border-radius: 12px;
+            transition: all 0.4s ease;
+            border: 1px solid rgba(255,255,255,0.5);
+            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+        }
+        
+        section.visible .card {
+            animation: fadeIn 0.6s ease-out forwards;
+        }
+        
+        .card:nth-child(1) { animation-delay: 0.2s; }
+        .card:nth-child(2) { animation-delay: 0.3s; }
+        .card:nth-child(3) { animation-delay: 0.4s; }
+        .card:nth-child(4) { animation-delay: 0.5s; }
+        
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+            border-color: var(--primary);
+        }
+        
+        .card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: var(--primary-dark);
+        }
+        
+        .card p {
+            color: var(--gray);
+            font-size: 0.95rem;
+        }
+        
+        .card .icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--primary-dark);
+        }
+        
+        /* About section layout */
+        .about-content {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+        
+        .about-text {
+            flex: 1;
+        }
+        
+        .about-image {
+            flex: 0 0 300px;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+            position: relative;
+            border: 5px solid var(--primary);
+        }
+        
+        .about-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+        
+        .about-image:hover img {
+            transform: scale(1.05);
+        }
+        
+        /* CV Upload Section */
+        .cv-upload {
+            text-align: center;
+            padding: 2rem;
+            background: var(--card-bg);
+            border-radius: 12px;
+            margin-top: 2rem;
+            border: 2px dashed var(--primary);
+        }
+        
+        .cv-upload h3 {
+            margin-bottom: 1rem;
+            color: var(--primary-dark);
+        }
+        
+        .cv-upload p {
+            color: var(--gray);
+            margin-bottom: 1.5rem;
+        }
+        
+        .upload-btn {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            background: var(--primary);
+            color: var(--dark);
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .upload-btn:hover {
+            background: var(--primary-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(255, 160, 0, 0.3);
+        }
+        
+        /* Contact cards */
+        .contact-card {
+            background: var(--card-bg);
+            padding: 1.5rem;
+            border-radius: 12px;
+            text-align: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+        }
+        
+        .contact-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        
+        .contact-card i {
+            font-size: 1.8rem;
+            color: var(--primary-dark);
+            margin-bottom: 1rem;
+        }
+        
+        .contact-card h3 {
+            margin-bottom: 0.5rem;
+            color: var(--dark);
+        }
+        
+        .contact-card a {
+            color: var(--primary-dark);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+        
+        .contact-card a:hover {
+            color: var(--primary);
+            text-decoration: underline;
+        }
+        
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.95);
+            color: var(--gray);
+            box-shadow: 0 -2px 10px rgba(0,0,0,0.05);
+        }
+        
+        /* Back to top button */
+        .back-to-top {
+            position: fixed;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            width: 45px;
+            height: 45px;
+            background: var(--primary);
+            color: var(--dark);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.2rem;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 99;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .back-to-top:hover {
+            background: var(--primary-dark);
+            transform: translateY(-3px);
+        }
+        
+        /* Loading animation */
+        .loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #ffffff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 999;
+            transition: opacity 0.5s ease;
+        }
+        
+        .loader.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+        
+        .loader-circle {
+            width: 50px;
+            height: 50px;
+            border: 5px solid rgba(255, 193, 7, 0.2);
+            border-top-color: var(--primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 992px) {
+            .about-content {
+                flex-direction: column;
+            }
+            
+            .about-image {
+                margin-top: 2rem;
+                width: 100%;
+                max-width: 350px;
+            }
+            
+            section {
+                padding: 3rem 1.5rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            header {
+                padding: 4rem 1.5rem;
+            }
+            
+            .nav-container {
+                gap: 0.5rem;
+            }
+            
+            nav a {
+                padding: 0.5rem 1rem;
+            }
+            
+            section {
+                padding: 2.5rem 1.2rem;
+                margin: 1.5rem 0;
+            }
+            
+            .skills-grid, .projects-grid, .contact-info {
+                grid-template-columns: 1fr;
+            }
+            
+            .back-to-top {
+                width: 40px;
+                height: 40px;
+                font-size: 1rem;
+                bottom: 1rem;
+                right: 1rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            header {
+                padding: 3rem 1rem;
+            }
+            
+            section {
+                padding: 2rem 1rem;
+            }
+            
+            .about-image {
+                max-width: 280px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Background images that will rotate -->
+    <div class="background-container">
+        <img src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80" 
+             alt="Creative workspace background" class="background-image active">
+        <img src="https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" 
+             alt="Tech background" class="background-image">
+        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" 
+             alt="Marketing background" class="background-image">
+    </div>
+    
+    <!-- Loading animation -->
+    <div class="loader">
+        <div class="loader-circle"></div>
+    </div>
+    
+    <header>
+        <h1>Kingsley Obosu Kwaku</h1>
+        <p class="tagline">Digital Marketer | AI Developer | Creative Designer</p>
+        <div class="social-links">
+            <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+            <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
+            <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+        </div>
+    </header>
+    
+    <nav>
+        <div class="nav-container">
+            <a href="#about" class="active">About</a>
+            <a href="#skills">Skills</a>
+            <a href="#projects">Projects</a>
+            <a href="#cv">My CV</a>
+            <a href="#contact">Contact</a>
+        </div>
+    </nav>
+    
+    <main>
+        <section id="about">
+            <h2>About Me</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>Hello! I'm Kingsley Obosu Kwaku, a passionate digital professional currently studying at Cape Coast Technical University. With expertise spanning marketing strategies, AI-powered web development, and visual design, I create comprehensive digital solutions that drive results.</p>
+                    <p>My approach combines technical skills with creative thinking to deliver impactful online experiences. I specialize in building intelligent websites that leverage artificial intelligence to provide personalized user experiences.</p>
+                    <p>When I'm not coding or designing, you can find me exploring new marketing trends, learning about emerging technologies, or working on personal creative projects.</p>
+                </div>
+                <div class="about-image">
+                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80" 
+                         alt="Kingsley Obosu Kwaku">
+                </div>
+            </div>
+        </section>
+        
+        <section id="skills">
+            <h2>My Skills</h2>
+            <div class="skills-grid">
+                <div class="card">
+                    <div class="icon"><i class="fas fa-bullseye"></i></div>
+                    <h3>Marketing Strategies</h3>
+                    <p>Data-driven campaigns, audience analysis, conversion optimization, and market research to drive business growth.</p>
+                </div>
+                <div class="card">
+                    <div class="icon"><i class="fas fa-robot"></i></div>
+                    <h3>AI Development</h3>
+                    <p>Building intelligent applications, chatbots, and websites using machine learning and natural language processing.</p>
+                </div>
+                <div class="card">
+                    <div class="icon"><i class="fas fa-paint-brush"></i></div>
+                    <h3>Graphic Design</h3>
+                    <p>Creating compelling visual identities, logos, branding materials, and marketing collateral.</p>
+                </div>
+                <div class="card">
+                    <div class="icon"><i class="fas fa-search"></i></div>
+                    <h3>SEO Optimization</h3>
+                    <p>Improving website visibility through technical SEO, content strategy, and performance optimization.</p>
+                </div>
+            </div>
+        </section>
+        
+        <section id="projects">
+            <h2>Featured Projects</h2>
+            <div class="projects-grid">
+                <div class="card">
+                    <div class="icon"><i class="fas fa-laptop-code"></i></div>
+                    <h3>AI-Powered Portfolio</h3>
+                    <p>Interactive portfolio website with AI chatbot integration that showcases my work and answers visitor questions.</p>
+                    <p><strong>Technologies:</strong> HTML5, CSS3, JavaScript, TensorFlow.js</p>
+                </div>
+                <div class="card">
+                    <div class="icon"><i class="fas fa-comment-dots"></i></div>
+                    <h3>Customer Support Chatbot</h3>
+                    <p>AI chatbot for e-commerce websites that handles common customer inquiries and improves response times.</p>
+                    <p><strong>Technologies:</strong> Python, NLP, Dialogflow, Node.js</p>
+                </div>
+                <div class="card">
+                    <div class="icon"><i class="fas fa-palette"></i></div>
+                    <h3>Brand Identity Package</h3>
+                    <p>Complete visual identity design for a tech startup including logo, color scheme, and marketing materials.</p>
+                    <p><strong>Tools:</strong> Adobe Illustrator, Photoshop, InDesign</p>
+                </div>
+            </div>
+        </section>
+        
+        <section id="cv">
+            <h2>My Curriculum Vitae</h2>
+            <div class="cv-upload">
+                <h3>Download My CV</h3>
+                <p>Currently working on my latest CV. Check back soon to download my updated professional resume.</p>
+                <button class="upload-btn" id="cvButton">Coming Soon</button>
+            </div>
+        </section>
+        
+        <section id="contact">
+            <h2>Get In Touch</h2>
+            <div class="contact-info">
+                <div class="contact-card">
+                    <i class="fas fa-envelope"></i>
+                    <h3>Email</h3>
+                    <p><a href="mailto:kingsleyobosu074@gmail.com">kingsleyobosu074@gmail.com</a></p>
+                </div>
+                <div class="contact-card">
+                    <i class="fas fa-phone"></i>
+                    <h3>Phone</h3>
+                    <p><a href="tel:+233544040874">+233 54 404 0874</a></p>
+                </div>
+                <div class="contact-card">
+                    <i class="fab fa-whatsapp"></i>
+                    <h3>WhatsApp</h3>
+                    <p><a href="https://wa.me/233544040874" target="_blank">Chat on WhatsApp</a></p>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <footer>
+        <p>&copy; <span id="year"></span> Kingsley Obosu Kwaku. All rights reserved.</p>
+    </footer>
+    
+    <div class="back-to-top" id="backToTop">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <script>
+        // Loading animation
+        window.addEventListener('load', function() {
+            setTimeout(function() {
+                document.querySelector('.loader').classList.add('hidden');
+            }, 1000);
+        });
+        
+        // Update copyright year
+        document.getElementById('year').textContent = new Date().getFullYear();
+        
+        // Background image rotation (changes every minute)
+        const backgrounds = document.querySelectorAll('.background-image');
+        let currentBg = 0;
+        
+        function changeBackground() {
+            backgrounds[currentBg].classList.remove('active');
+            currentBg = (currentBg + 1) % backgrounds.length;
+            backgrounds[currentBg].classList.add('active');
+        }
+        
+        // Change every 60 seconds (60000 milliseconds)
+        setInterval(changeBackground, 60000);
+        
+        // Scroll animations
+        const sections = document.querySelectorAll('section');
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, {
+            threshold: 0.1
+        });
+        
+        sections.forEach(section => {
+            observer.observe(section);
+        });
+        
+        // Back to top button
+        const backToTopBtn = document.getElementById('backToTop');
+        
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTopBtn.classList.add('visible');
+            } else {
+                backToTopBtn.classList.remove('visible');
+            }
+        });
+        
+        backToTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+        
+        // Smooth scrolling for navigation
+        document.querySelectorAll('nav a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+                
+                // Update active nav link
+                document.querySelectorAll('nav a').forEach(link => {
+                    link.classList.remove('active');
+                });
+                this.classList.add('active');
+            });
+        });
+        
+        // Highlight nav link based on scroll position
+        window.addEventListener('scroll', () => {
+            let current = '';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                
+                if (pageYOffset >= (sectionTop - 300)) {
+                    current = section.getAttribute('id');
+                }
+            });
+            
+            document.querySelectorAll('nav a').forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
+                }
+            });
+        });
+        
+        // CV Button functionality
+        const cvButton = document.getElementById('cvButton');
+        cvButton.addEventListener('click', function() {
+            alert("My CV will be available for download soon. Please contact me directly for now.");
+        });
+    </script>
+</body>
+</html>
