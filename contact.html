@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Me | Kingsley Obosu Kwaku</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+
+    <header>
+        <nav class="container">
+            <a href="index.html" class="logo">Kingsley Obosu Kwaku</a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="portfolio.html">Portfolio</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <div class="theme-switch-wrapper">
+                <i class="fas fa-sun"></i>
+                <label class="theme-switch">
+                    <input type="checkbox" id="theme-switch">
+                    <span class="slider round"></span>
+                </label>
+                <i class="fas fa-moon"></i>
+            </div>
+            <div class="hamburger">
+                <div class="line"></div>
+                <div class="line"></div>
+                <div class="line"></div>
+            </div>
+        </nav>
+    </header>
+
+    <main><section id="contact" class="contact-section">
+    <div class="container">
+        <h2 class="section-title reveal">Let's Create Something Amazing Together</h2>
+        <p class="section-subtitle reveal">Have a project in mind? I'd love to hear about it. Send me a message and let's bring your ideas to life!</p>
+        
+        <div class="contact-container">
+            <!-- Contact Form -->
+            <div class="contact-form-container reveal">
+                <form id="contactForm" class="contact-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="name">Full Name</label>
+                            <input type="text" id="name" name="name" placeholder="Enter your full name" required>
+                            <div class="input-highlight"></div>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" name="email" placeholder="Enter your email address" required>
+                            <div class="input-highlight"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="subject">Project Type</label>
+                        <select id="subject" name="subject" required>
+                            <option value="">Select project type</option>
+                            <option value="web-development">Web Development</option>
+                            <option value="web-design">Web Design</option>
+                            <option value="consultation">Consultation</option>
+                            <option value="collaboration">Collaboration</option>
+                            <option value="other">Other</option>
+                        </select>
+                        <div class="input-highlight"></div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="budget">Project Budget</label>
+                        <div class="budget-options">
+                            <label class="budget-option">
+                                <input type="radio" name="budget" value="$500 - $1,000">
+                                <span>$500 - $1,000</span>
+                            </label>
+                            <label class="budget-option">
+                                <input type="radio" name="budget" value="$1,000 - $2,500">
+                                <span>$1,000 - $2,500</span>
+                            </label>
+                            <label class="budget-option">
+                                <input type="radio" name="budget" value="$2,500 - $5,000">
+                                <span>$2,500 - $5,000</span>
+                            </label>
+                            <label class="budget-option">
+                                <input type="radio" name="budget" value="$5,000+">
+                                <span>$5,000+</span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="message">Project Details</label>
+                        <textarea id="message" name="message" rows="6" placeholder="Tell me about your project, timeline, and any specific requirements..." required></textarea>
+                        <div class="input-highlight"></div>
+                    </div>
+                    
+                    <button type="submit" class="cta-button submit-btn">
+                        <span class="btn-text">Send Project Inquiry</span>
+                        <div class="btn-loader"></div>
+                    </button>
+                </form>
+                
+                <div id="formMessage" class="form-message"></div>
+            </div>
+            
+            <!-- Contact Information -->
+            <div class="contact-info reveal">
+                <div class="info-header">
+                    <h3>Get In Touch</h3>
+                    <div class="decoration-line"></div>
+                </div>
+                
+                <div class="info-card">
+                    <div class="info-icon">
+                        <i class="fas fa-paper-plane"></i>
+                    </div>
+                    <div class="info-content">
+                        <h4>Quick Response</h4>
+                        <p>I typically reply within 2-4 hours during business days</p>
+                    </div>
+                </div>
+                
+                <ul class="info-list">
+                    <li class="info-item">
+                        <div class="info-icon-wrapper">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="info-details">
+                            <span class="info-label">Email</span>
+                            <a href="mailto:kingsleyobosu074@gmail.com" class="info-value">kingsleyobosu074@gmail.com</a>
+                        </div>
+                    </li>
+                    
+                    <li class="info-item">
+                        <div class="info-icon-wrapper">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div class="info-details">
+                            <span class="info-label">Phone</span>
+                            <a href="mailto:kingsleyobosu074@gmail.com" class="info-value">+233 (544) 404-0874</a>
+                        </div>
+                    </li>
+                    
+                    <li class="info-item">
+                        <div class="info-icon-wrapper">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="info-details">
+                            <span class="info-label">Location</span>
+                            <span class="info-value">Available Worldwide</span>
+                        </div>
+                    </li>
+                    <section class="contact-section image-bg-section">
+  </section>
+                    
+                    <li class="info-item">
+                        <div class="info-icon-wrapper">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="info-details">
+                            <span class="info-label">Response Time</span>
+                            <span class="info-value">2-4 Hours</span>
+                        </div>
+                    </li>
+                </ul>
+                
+                <div class="social-section">
+                    <h4>Follow My Work</h4>
+                    <div class="social-links-contact">
+                        <a href="#" class="social-link" aria-label="LinkedIn" style="--social-color: #0077b5;">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                        <a href="#" class="social-link" aria-label="GitHub" style="--social-color: #333;">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="#" class="social-link" aria-label="Tiktok" style="--social-color: #050607;">
+                            <i class="fab fa-tiktok"></i>
+                        </a>
+                        <a href="#" class="social-link" aria-label="facebook" style="--social-color: #528ce2;">
+                            <i class="fab fa-facebook"></i>
+                        </a>
+                        <a href="#" class="social-link" aria-label="Whatsapp" style="--social-color: #03cc1e;">
+                            <i class="fab fa-Whatsapp"></i>
+                        </a>
+                        <a href="#" class="social-link" aria-label="Dribbble" style="--social-color: #ea4c89;">
+                            <i class="fab fa-dribbble"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="social-links">
+                <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                <a href="#" aria-label="Tiktok"><i class="fab fa-tiktok"></i></a>
+                <a href="#" aria-label="facebook"><i class="fab fa-facebook"></i></a>
+                <a href="#" aria-label="Whatsapp"><i class="fab fa-whatsapp"></i></a>
+            </div>
+            <p>&copy; 2025 by Kingsley Obosu Kwaku. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>         
